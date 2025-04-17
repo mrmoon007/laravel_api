@@ -33,7 +33,7 @@ These instructions will get you a copy of the project up and running on your loc
 1- Clone the project
 
 ```
-git clone https://github.com/mrmoon007//tgc.git
+git clone https://github.com/mrmoon007//laravel_api.git
 ```
 
 2- Install the dependencies
