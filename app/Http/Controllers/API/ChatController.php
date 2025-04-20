@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Events\NewMessageSent;
 use App\Http\Controllers\Controller;
 use App\Models\Message;
 use App\Models\User;
@@ -135,14 +136,14 @@ class ChatController extends Controller
      */
     public function sendMessage(Request $request)
     {
-
         try {
-
             $message = Message::create([
                 'sender_id'   => auth()->id(),
                 'receiver_id' => $request->receiver_id,
                 'message'     => $request->message,
             ]);
+
+            broadcast(new NewMessageSent($message))->toOthers();
 
             return response()->json([
                 'status' => true,

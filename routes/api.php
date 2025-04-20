@@ -5,6 +5,7 @@ use App\Http\Controllers\API\GroupChatController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,7 @@ Route::post('register', [RegisterController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile', [ProfileController::class, 'show']);
+    Route::get('/users', [UserController::class, 'index']);
     Route::post('logout', [ProfileController::class, 'logout']);
     
     Route::get('/messages/{user}', [ChatController::class, 'getMessages']);
