@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ExamController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\ProfileController;
 use App\Http\Controllers\API\RegisterController;
@@ -16,4 +17,9 @@ Route::post('register', [RegisterController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('profile', [ProfileController::class, 'show']);
     Route::post('logout', [ProfileController::class, 'logout']);
+
+    //quiz routes
+    Route::get('/exams', [ExamController::class, 'index']);
+    Route::get('/exams/{id}', [ExamController::class, 'show']);
+    Route::post('/exams/{id}/submit', [ExamController::class, 'submit']);
 });
